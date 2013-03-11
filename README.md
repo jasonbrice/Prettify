@@ -34,5 +34,5 @@ production. Such as:
 General Notes:
 The Java src and JUnit files contained herein were created with Eclipse. You ought to be able to 
 import it as an existing project into Eclipse "as is". If you use something else, you'll need
-to import the src, associate the project with JRE 1.6+, and point the claasspath to JUnit4. 
+to import the src, associate the project with JRE 1.6+, and point the classpath to JUnit4. 
 
