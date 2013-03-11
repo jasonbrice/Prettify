@@ -63,7 +63,7 @@ public class PrettyFormatter {
 			// catch an exception thrown by NumberFormat.parse()
 			catch (ParseException nfe) {
 				return value
-						+ " doesn't look like a number. Try something like 123 or 456.789 or 100,000,000 or 1.08E2";
+					+ " doesn't look like a number. Try something like 123 or 456.789 or 100,000,000 or 1.08E2";
 			}
 			// catch any general exceptions. but...
 			// according to the JavaDoc, no other methods
