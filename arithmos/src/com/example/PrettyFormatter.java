@@ -34,9 +34,7 @@ public class PrettyFormatter {
 		NumberFormat numberFormat = NumberFormat.getNumberInstance(locale);
 		DecimalFormat prettyDecimalFormat = (DecimalFormat) numberFormat;
 		prettyDecimalFormat.applyLocalizedPattern("#,##0.#");
-		
-		// we don't know the suffixes for anything larger than 999 trillion
-		double aNumberTooBig = Math.pow(1000, 1 + suffixes.length);
+
 
 		try{
 		double d = numberFormat.parse(value).doubleValue();
@@ -44,30 +42,25 @@ public class PrettyFormatter {
 				//"It should prettify numbers greater than 6 digits"
 				// Let's assume this means return the value unchanged,
 				// even we get a format like scientific notation.
-				if(d < 1000000) 
+				if(Math.abs(d) < 1000000) 
 					{
 						return value;
 					}
 				
-				if (Math.abs(d) >= aNumberTooBig) {
-
-					return value
-							+ " is outside the Prettification range";
-
-				} else {
+			
 					String formattedNumber = format(d, prettyDecimalFormat);
 					return formattedNumber;
-				}
-
+					
 			}
+			
 			// catch an exception thrown by NumberFormat.parse()
 			catch (ParseException nfe) {
 				return value
-					+ " doesn't look like a number. Try something like 123 or 456.789 or 100,000,000 or 1.08E2";
+						+ " doesn't look like a number. Try something like 123 or 456.789 or 100,000,000 or 1.08E2";
 			}
 			// catch any general exceptions. but...
 			// according to the JavaDoc, no other methods
-			// called in the loop can throw an exception,
+			// called in the try/catch block can throw an exception,
 			// so *if* the JavaDoc is right, this won't ever be executed.
 			catch (Exception ex) {
 				return "unable to prettify " + value;
@@ -91,7 +84,7 @@ public class PrettyFormatter {
 		for (int j = suffixes.length; j > 0; j--) {
 			double unit = Math.pow(1000, j);
 
-			if (number >= unit) {
+			if (Math.abs(number) >= unit) {
 				return decimalFormat.format(number / unit) + suffixes[--j];
 			}
 		}

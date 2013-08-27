@@ -57,8 +57,8 @@ public class Prettify {
 	// catch all for null/unexpected input
 	private static void usage() {
 
-		System.out.println("Please enter a number to format.");
-		System.out.println("Some examples you might try are: 123 or 456.789 or 100,000,000 or 1.08E2");
+		System.out
+				.println("Please enter a number to format. Some examples you might try are: 123 or 456.789 or 100,000,000 or 1.08E2");
 
 	}
 }
